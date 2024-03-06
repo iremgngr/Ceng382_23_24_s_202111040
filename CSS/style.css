@@ -1,0 +1,73 @@
+h2 {
+    text-align: center;
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+}
+
+form {
+    text-align: center;
+    width: 20%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #FBFCFC;
+    opacity: 1;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-family: "Source Sans Pro", "Arial", sans-serif;
+    text-align: left;
+    margin-top: 1%;
+    margin-bottom: -3%;
+    display: block;
+    font-weight: 600;
+}
+
+input {
+    width: 95%;
+    padding: 2%;
+    border: 2px solid #ccc;
+    border-width: thin;
+    border-radius: 5%;
+    margin-bottom: 5%;
+}
+
+input[type="submit"] {
+    width: 100%;
+    font-size: 15px;
+    padding: 3%;
+    color: white;
+    background-color: #2ECC71;
+    border: #ccc;
+    border-radius: 5px;
+}
+
+
+table {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #FBFCFC;
+    opacity: 1;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+}
+
+td {
+    text-align: left;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    padding: 1%;
+}
+
+tr.title {
+    background-color: #E5E8E8;
+}
+
+
+tr.special {
+    background-color: #EAEDED;
+}
