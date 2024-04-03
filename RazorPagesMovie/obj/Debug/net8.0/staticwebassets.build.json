@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ban8eUyUa4meMsSiicofNBjC8cHaq6ZTlj52DDjy4hg=",
+  "Hash": "CavompfHjZWrbVawzFcQ052zaES439KhDi4wejVDG9E=",
   "Source": "RazorPagesMovie",
   "BasePath": "_content/RazorPagesMovie",
   "Mode": "Default",
@@ -112,12 +112,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "c:\\Users\\exa\\Desktop\\Ceng382\\Ceng382_23_24_s_202111040\\RazorPagesMovie\\wwwroot\\js\\new.js",
+      "Identity": "c:\\Users\\exa\\Desktop\\Ceng382\\Ceng382_23_24_s_202111040\\RazorPagesMovie\\wwwroot\\js\\custom.js",
       "SourceId": "RazorPagesMovie",
       "SourceType": "Discovered",
       "ContentRoot": "c:\\Users\\exa\\Desktop\\Ceng382\\Ceng382_23_24_s_202111040\\RazorPagesMovie\\wwwroot\\",
       "BasePath": "_content/RazorPagesMovie",
-      "RelativePath": "js/new.js",
+      "RelativePath": "js/custom.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -128,7 +128,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\new.js"
+      "OriginalItemSpec": "wwwroot\\js\\custom.js"
     },
     {
       "Identity": "c:\\Users\\exa\\Desktop\\Ceng382\\Ceng382_23_24_s_202111040\\RazorPagesMovie\\wwwroot\\js\\site.js",
