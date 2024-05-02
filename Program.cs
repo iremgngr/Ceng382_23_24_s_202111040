@@ -3,12 +3,13 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-class Program
+
+partial class Program
 {
-    static Reservation[,] reservations;
+    static Reservation?[,] reservations;
     static void Main(string[] args)
     {
-        string filePath = "Data.json";
+        string filePath = "ReservationData.json";
 
         // JSON dosyasından odaları yükle
         string jsonString = File.ReadAllText(filePath);
@@ -52,77 +53,117 @@ class Program
     }
 
     // Rezervasyon yap
-    static void MakeReservation(RoomData roomData)
+static void MakeReservation(RoomData roomData)
+{
+    // RoomData nesnesi null ise uygun bir mesaj göster ve fonksiyondan çık
+    if (roomData == null || roomData.Rooms == null || roomData.Rooms.Length == 0)
     {
-        // RoomData nesnesi null ise uygun bir mesaj göster ve fonksiyondan çık
-        if (roomData == null || roomData.Rooms == null || roomData.Rooms.Length == 0)
+        Console.WriteLine("Oda bilgileri bulunamadı veya eksik. Rezervasyon yapmak için önce odaları yükleyin.");
+        return;
+    }
+
+    // reservations dizisini başlat
+    if (reservations == null)
+    {
+        // varsayılan boyutlarla başlat, gerektiğinde boyutu artırabilirsiniz
+        reservations = new Reservation[7, 24];
+    }
+
+    Console.WriteLine("Room ID girin:");
+    string roomId = Console.ReadLine();
+
+    Console.WriteLine("Rezervasyon tarihini girin (YYYY-MM-DD):");
+    DateTime dateTime;
+    if (!DateTime.TryParse(Console.ReadLine(), out dateTime))
+    {
+        Console.WriteLine("Geçersiz tarih formatı.");
+        return;
+    }
+
+    Console.WriteLine("Rezervasyon yapan kişinin adını girin:");
+    string reserverName = Console.ReadLine();
+
+    Room selectedRoom = FindRoomById(roomData.Rooms, roomId);
+    if (selectedRoom != null)
+    {
+        Reservation reservation = new Reservation
         {
-            Console.WriteLine("Oda bilgileri bulunamadı veya eksik. Rezervasyon yapmak için önce odaları yükleyin.");
-            return;
-        }
+            Room = selectedRoom,
+            DateTime = dateTime,
+            ReserverName = reserverName
+        };
 
-        // reservations dizisini başlat
-        if (reservations == null)
+        // reservations dizisine rezervasyonu ekle
+        // bu örnek kodda aynı zaman diliminde birden fazla rezervasyon yapılabileceği için uygun bir algoritma uygulanmalıdır
+        // burada sadece ilk boş konuma ekleniyor
+        for (int i = 0; i < reservations.GetLength(0); i++)
         {
-            // varsayılan boyutlarla başlat, gerektiğinde boyutu artırabilirsiniz
-            reservations = new Reservation[7, 24];
-        }
-
-        Console.WriteLine("Room ID girin:");
-        string roomId = Console.ReadLine();
-
-        Console.WriteLine("Rezervasyon tarihini girin (YYYY-MM-DD):");
-        DateTime dateTime;
-        if (!DateTime.TryParse(Console.ReadLine(), out dateTime))
-        {
-            Console.WriteLine("Geçersiz tarih formatı.");
-            return;
-        }
-
-        Console.WriteLine("Rezervasyon yapan kişinin adını girin:");
-        string reserverName = Console.ReadLine();
-
-        Room selectedRoom = FindRoomById(roomData.Rooms, roomId);
-        if (selectedRoom != null)
-        {
-            Reservation reservation = new Reservation
+            for (int j = 0; j < reservations.GetLength(1); j++)
             {
-                Room = selectedRoom,
-                DateTime = dateTime,
-                ReserverName = reserverName
-            };
-
-            // reservations dizisine rezervasyonu ekle
-            // bu örnek kodda aynı zaman diliminde birden fazla rezervasyon yapılabileceği için uygun bir algoritma uygulanmalıdır
-            // burada sadece ilk boş konuma ekleniyor
-            for (int i = 0; i < reservations.GetLength(0); i++)
-            {
-                for (int j = 0; j < reservations.GetLength(1); j++)
+                if (reservations[i, j] == null)
                 {
-                    if (reservations[i, j] == null)
-                    {
-                        reservations[i, j] = reservation;
-                        break;
-                    }
+                    reservations[i, j] = reservation;
+                    break;
                 }
             }
+        }
 
-            Console.WriteLine("Rezervasyon oluşturuldu:");
-            Console.WriteLine($"Room ID: {reservation.Room.roomId}, Room Name: {reservation.Room.roomName}, Capacity: {reservation.Room.capacity}");
-            Console.WriteLine($"Rezervasyon Tarihi: {reservation.DateTime}, Yapan Kişi: {reservation.ReserverName}");
-        }
-        else
-        {
-            Console.WriteLine("Geçersiz oda ID'si.");
-        }
+        Console.WriteLine("Rezervasyon oluşturuldu:");
+        Console.WriteLine($"Room ID: {reservation.Room.roomId}, Room Name: {reservation.Room.roomName}, Capacity: {reservation.Room.capacity}");
+        Console.WriteLine($"Rezervasyon Tarihi: {reservation.DateTime}, Yapan Kişi: {reservation.ReserverName}");
+
+        // Rezervasyon işlemi tamamlandıktan sonra günlük kaydı al
+        MyNamespace.ReservationLogger.LogReservationAction("Reservation made.");
     }
-
-
-    // Rezervasyon iptal et
-    static void CancelReservation()
+    else
     {
-        // Implementasyonu buraya ekleyin
+        Console.WriteLine("Geçersiz oda ID'si.");
     }
+}
+
+
+static void CancelReservation()
+{
+    // İptal edilecek rezervasyonun detaylarını kullanıcıdan al
+    Console.WriteLine("Room ID girin:");
+    string roomId = Console.ReadLine();
+
+    Console.WriteLine("Rezervasyon tarihini girin (YYYY-MM-DD):");
+    DateTime dateTime;
+    if (!DateTime.TryParse(Console.ReadLine(), out dateTime))
+    {
+        Console.WriteLine("Geçersiz tarih formatı.");
+        return;
+    }
+
+    // İlgili rezervasyonu bul
+    Reservation reservationToCancel = null;
+    for (int i = 0; i < reservations.GetLength(0); i++)
+    {
+        for (int j = 0; j < reservations.GetLength(1); j++)
+        {
+            if (reservations[i, j] != null && reservations[i, j].Room.roomId == roomId && reservations[i, j].DateTime.Date == dateTime.Date)
+            {
+                reservationToCancel = reservations[i, j];
+                reservations[i, j] = null; // Rezervasyonu iptal et
+                break;
+            }
+        }
+    }
+
+    // Rezervasyon bulunamadıysa hata mesajı ver
+    if (reservationToCancel == null)
+    {
+        Console.WriteLine("İlgili rezervasyon bulunamadı.");
+        return;
+    }
+
+    // Rezervasyonu iptal et ve günlük kaydı al
+    Console.WriteLine("Rezervasyon başarıyla iptal edildi.");
+    MyNamespace.ReservationLogger.LogReservationAction("Reservation canceled.");
+}
+
+
 
     // Bu haftalık rezervasyonları göster
     static void ShowWeeklyReservations(Reservation[,] reservations)

@@ -1,0 +1,11 @@
+[
+    {
+      "Message": "2024-05-03 tarihinde Toplantı Odası A için rezervasyon yapıldı.",
+      "Timestamp": "2024-05-03T10:00:00"
+    },
+    {
+      "Message": "2024-05-05 tarihinde Toplantı Odası B için rezervasyon iptal edildi.",
+      "Timestamp": "2024-05-05T15:30:00"
+    }
+    
+  ]
