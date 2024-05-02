@@ -3,33 +3,9 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-public class RoomData
-{
-    [JsonPropertyName("Room")]
-    public Room[] Rooms { get; set; }
-}
-public class Room
-{
-    [JsonPropertyName("roomId")]
-    public string roomId { get; set; }
-
-    [JsonPropertyName("roomName")]
-    public string roomName { get; set; }
-
-    [JsonPropertyName("capacity")]
-    public int capacity { get; set; }
-}
-
-public class Reservation
-{
-    public Room Room { get; set; }
-    public DateTime DateTime { get; set; }
-    public string ReserverName { get; set; }
-}
-
 class Program
 {
-    static Reservation[,] reservations; // reservations değişkenini burada tanımlayın
+    static Reservation[,] reservations;
     static void Main(string[] args)
     {
         string filePath = "Data.json";
