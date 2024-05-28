@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MyRazorPagesApp.Models;
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) :
