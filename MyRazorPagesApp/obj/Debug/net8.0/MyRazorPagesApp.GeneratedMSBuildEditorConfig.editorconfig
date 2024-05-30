@@ -18,6 +18,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\exa\Desktop\Ceng382\Ceng382_23_24_s_202111040\MyRazorPagesApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/CreateRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXRlUm9vbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/DeleteRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsZXRlUm9vbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/EditRoom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFJvb20uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/Room.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/exa/Desktop/Ceng382/Ceng382_23_24_s_202111040/MyRazorPagesApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
