@@ -1,0 +1,34 @@
+@page
+@model MyApp.Namespace.ReservationsListModel
+@{
+    ViewData["Title"] = "Reservations List";
+}
+
+<h1>Reservations List</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Room</th>
+            <th>Reserver</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model.Reservations)
+        {
+            <tr>
+                <td>@reservation.Room.RoomName</td>
+                <td>@reservation.ReserverName</td>
+                <td>@reservation.StartTime</td>
+                <td>@reservation.EndTime</td>
+                <td>
+                    <a asp-page="./EditReservation" asp-route-id="@reservation.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="./DeleteReservation" asp-route-id="@reservation.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
